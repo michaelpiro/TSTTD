@@ -3,9 +3,9 @@ from Train_eval import train, eval, select_best
 
 def main(model_config=None):
     modelConfig = {
-        "state": "eval",  # train, eval, or select_best
+        "state": "train",  # train, eval, or select_best
         "epoch": 20,
-        "band": 189,  # 189, 189, 162, 205
+        "band": 103,  # 189, 189, 162, 205
         "multiplier": 2,
         "seed": 1,
         "batch_size": 64,
@@ -23,7 +23,7 @@ def main(model_config=None):
         "training_load_weight": None,
         "save_dir": "./Checkpoint/",
         "test_load_weight": "ckpt_5_.pt",
-        "path": "Sandiego.mat"
+        "path": "d_train.mat"
     }
     if model_config is not None:
         modelConfig = model_config
