@@ -10,7 +10,8 @@ from Tools import standard
 class Data(data.Dataset):
     def __init__(self, path):
         mat = sio.loadmat(path)
-        data = mat['data']
+        # data = mat['data']
+        data = mat['training_data']
         gt = mat['map']
         data = standard(data)
 
