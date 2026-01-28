@@ -156,7 +156,7 @@ def select_best(modelConfig: Dict):
     for e in range(modelConfig['epoch']):
         with torch.no_grad():
             mat = sio.loadmat(modelConfig["path"])
-            data = mat['data']
+            data = mat['training_data']
             map = mat['map']
             data = standard(data)
             data = np.float32(data)
@@ -222,7 +222,7 @@ def eval(modelConfig: Dict):
     path = modelConfig["save_dir"] + '/' + modelConfig['path'] + '/'
     with torch.no_grad():
         mat = sio.loadmat(modelConfig["path"])
-        data = mat['data']
+        data = mat['training_data']
         map = mat['map']
         data = standard(data)
         data = np.float32(data)
