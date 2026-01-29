@@ -202,11 +202,19 @@ def select_best(modelConfig: Dict):
             detection_map = np.reshape(detection_map, [h, w], order='F')
             detection_map = standard(detection_map)
             detection_map = np.clip(detection_map, 0, 1)
+            # save detection map
+            sio.savemat(os.path.join(
+                path, 'detection_map_epoch_%s.mat' % e), {'detection_map': detection_map})
+
+
             y_l = np.reshape(map, [-1, 1], order='F')
             y_p = np.reshape(detection_map, [-1, 1], order='F')
 
             ## calculate the AUC value
             fpr, tpr, _ = metrics.roc_curve(y_l, y_p, drop_intermediate=False)
+            # save FPR, TPR
+            sio.savemat(os.path.join(
+                path, 'fpr_tpr_threshold_epoch_%s.mat' % e), {'fpr': fpr, 'tpr': tpr})
             fpr = fpr[1:]
             tpr = tpr[1:]
             auc = round(metrics.auc(fpr, tpr), modelConfig['epision'])
