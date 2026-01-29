@@ -62,6 +62,9 @@ def main(model_config=None):
 
 if __name__ == '__main__':
     main(model_config=model_conf)
+    model_conf["state"] = "eval"
+    main(model_config=model_conf)
+
     checkpoints_dir = os.path.join(model_conf['save_dir'], model_conf['path'])
 
     model_conf['path'] = "synthetic_of_test72_t.mat"
@@ -70,5 +73,6 @@ if __name__ == '__main__':
     os.rename(checkpoints_dir, new_checkpoints_dir)
     model_conf["state"] = "select_best"
     main(model_config=model_conf)
+    os.rename(new_checkpoints_dir, checkpoints_dir)
 
 
